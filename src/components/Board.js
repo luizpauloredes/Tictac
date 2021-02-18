@@ -4,48 +4,41 @@ import Square from './Square';
 
 const Board = () => {
 
-    const [val, setVal] = useState({
-        1: 'teste',
-        2: '',
-        3: '',
-        4: '',
-        5: '',
-        6: '',
-        7: '',
-        8: '',
-        9: ''
-    })
+    const [positions, setPositions] = useState(['','','','','','','','','',])
 
-    const [currentPlayer, setCurrentPlayer] = useState(false)
-
-
-    const player1 = 'O'
+    const [currentPlayer, setCurrentPlayer] = useState('B')
+    const player1 = '5'
     const player2 = 'X'
-    const square = () => {
-        let arr = []
-
-        for (let i = 1; i < 10; i++) {
-            arr = [...arr, <div className="col-4">
-                <Square val={val['i']} changeValue={() => {
-
-                    setVal({ ...val, i: currentPlayer ? player1 : player2 })
-                    setCurrentPlayer(!currentPlayer)
-                }
-                } />
-            </div>]
-
-        }
-        return arr
+    
+    
+    const changeValue =  (positions)=> {
+      console.log('funcao changevalue ativada')
+      setPositions(player1)
+      
     }
 
+    
+   /*  const generateSquare = () => {
+        let arr = []
+        for ( let i= 0 ; i < 9; i++) {
+            
+                arr.push(<Square  val={positions[i]}  changeValue={changeValue} /> ) 
+        }
+    } */
 
-    console.log(square())
-    console.log('val', val['1'])
+    console.log('positions', positions)
+    
+
     return (
         <div className="container p-3 bg-dark m-5 " >
             <div className="row ">
-            {square().map(e=> e)}
-                
+                {
+                    positions && positions.map(
+                        (item, index) =>{
+                            return(<Square key={index} index={index}  positions={positions} val={item}  changeValue={changeValue} /> )
+                        }                        
+                    )
+                }
             </div>
         </div>
     )
