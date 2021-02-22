@@ -1,33 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Square from './Square';
 
 
 const Board = () => {
 
-    const [positions, setPositions] = useState(['','','','','','','','','',])
+    const [positions, setPositions] = useState(['0','0','0','0','0','0','0','0','0',])
 
     const [currentPlayer, setCurrentPlayer] = useState('B')
     const player1 = '5'
     const player2 = 'X'
     
     
-    const changeValue =  (positions)=> {
-      console.log('funcao changevalue ativada')
-      setPositions(player1)
-      
-    }
-
-    
-   /*  const generateSquare = () => {
-        let arr = []
-        for ( let i= 0 ; i < 9; i++) {
-            
-                arr.push(<Square  val={positions[i]}  changeValue={changeValue} /> ) 
-        }
-    } */
-
-    console.log('positions', positions)
-    
+   
 
     return (
         <div className="container p-3 bg-dark m-5 " >
@@ -35,7 +19,10 @@ const Board = () => {
                 {
                     positions && positions.map(
                         (item, index) =>{
-                            return(<Square key={index} index={index}  positions={positions} val={item}  changeValue={changeValue} /> )
+                            console.log('clicou', index)
+                            return(<div  key={index}  className="square m-2 d-flex justify-content-center align-items-center col-3" >
+                            <h1 className="text-danger text-center">{item}</h1>
+                        </div>)
                         }                        
                     )
                 }
